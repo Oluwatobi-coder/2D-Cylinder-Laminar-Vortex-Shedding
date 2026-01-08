@@ -21,7 +21,7 @@ This project involves a computational fluid dynamics (CFD) validation study of u
 
 2. Boundary Conditions
 - Velocity ($\mathbf{u}$): $1.0 \, \text{m/s}$ in +ve x-direction (Inlet)
-- Pressure ($p$): $0$ $0 \, \text{Pa}$
+- Pressure ($p$): $0 \, \text{Pa}$
 - Kinematic Viscosity ($\nu$): $0.01$ $m^2/s$
 
 
