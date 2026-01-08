@@ -20,8 +20,8 @@ This project involves a computational fluid dynamics (CFD) validation study of u
 - Diameter ($D$) = 1.0m
 
 2. Boundary Conditions
-- Velocity ($\mathbf{u}$): $1.0 \, \text{m/s}$ in +ve x-direction (Inlet)
-- Pressure ($p$): $0 \, \text{Pa}$
+- Velocity ($\mathbf{u}$): $1.0 \ \text{m/s}$ in +ve x-direction (Inlet)
+- Pressure ($p$): $0 \ \text{Pa}$
 - Kinematic Viscosity ($\nu$): $0.01$ $m^2/s$
 
 
