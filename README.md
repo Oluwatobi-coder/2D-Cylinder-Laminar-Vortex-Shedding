@@ -93,7 +93,7 @@ cd 2D-Cylinder-Laminar-Vortex-Shedding
 
 ### 2. Run the simulation
 ```bash
-bash ./Allrun # or just ./Allrun
+bash ./Allrun # or ./Allrun
 ```
 ## 3. download required libraries for (post-processing script)
 ```bash
