@@ -1,9 +1,9 @@
 # 2D-Cylinder-Laminar-Vortex-Shedding
 This project involves a computational fluid dynamics (CFD) validation study of unsteady laminar flow over a circular cylinder. It illustrates the progression from initial instability to a stable, periodic vortex shedding pattern (Von Kármán vortex street) at Re = 100. 
 
-<p align="center">
+<div align="center">
   <video src="vortex_shedding_simulation.mp4" width="80%"> </video>
-</p>
+</div>
 
 
 ## Technology used
@@ -29,7 +29,7 @@ This project involves a computational fluid dynamics (CFD) validation study of u
 The fluid flow is modeled as a 2D, unsteady, incompressible laminar flow. The motion is governed by the conservation of mass and momentum equations:
 - **Continuity Equation:** $$\nabla \cdot \mathbf{u} = 0$$2. 
 - **Momentum Equation:** $$\frac{\partial \mathbf{u}}{\partial t} + (\mathbf{u} \cdot \nabla)\mathbf{u} = -\frac{1}{\rho}\nabla p + \nu \nabla^2 \mathbf{u}$$
-Where:$\mathbf{u}$ = velocity vector field, $p$ is the static pressure, $\rho$ is the fluid density, and $\nu$ is the kinematic viscosity.
+Where: $\mathbf{u}$ = velocity vector field, $p$ is the static pressure, $\rho$ is the fluid density, and $\nu$ is the kinematic viscosity.
 - **Dimensionless Parameters:** 
 The flow regime is defined by the Reynolds Number ($Re$):$$Re = \frac{U D}{\nu}$$
 The periodic nature of the vortex shedding is characterized by the Strouhal Number ($St$):$$St = \frac{f D}{U}$$
