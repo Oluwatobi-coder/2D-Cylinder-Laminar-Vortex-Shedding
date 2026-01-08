@@ -2,9 +2,8 @@
 This project involves a computational fluid dynamics (CFD) validation study of unsteady laminar flow over a circular cylinder. It illustrates the progression from initial instability to a stable, periodic vortex shedding pattern (Von Kármán vortex street) at Re = 100. 
 
 <div align="center">
-  <video src="vortex_shedding_simulation.mp4" width="80%"> </video>
+  <video src="https://github.com/user-attachments/assets/cd45ee14-33c2-4baf-ad76-4caacf109f23" width="80%"> </video>
 </div>
-
 
 ## Technology used
 
@@ -27,13 +26,13 @@ This project involves a computational fluid dynamics (CFD) validation study of u
 
 ## Governing Equations
 The fluid flow is modeled as a 2D, unsteady, incompressible laminar flow. The motion is governed by the conservation of mass and momentum equations:
-- **Continuity Equation:** $$\nabla \cdot \mathbf{u} = 0$$2. 
+- **Continuity Equation:** $$\nabla \cdot \mathbf{u} = 0$$ 
 - **Momentum Equation:** $$\frac{\partial \mathbf{u}}{\partial t} + (\mathbf{u} \cdot \nabla)\mathbf{u} = -\frac{1}{\rho}\nabla p + \nu \nabla^2 \mathbf{u}$$
 Where: $\mathbf{u}$ = velocity vector field, $p$ is the static pressure, $\rho$ is the fluid density, and $\nu$ is the kinematic viscosity.
 - **Dimensionless Parameters:** 
-The flow regime is defined by the Reynolds Number ($Re$):$$Re = \frac{U D}{\nu}$$
-The periodic nature of the vortex shedding is characterized by the Strouhal Number ($St$):$$St = \frac{f D}{U}$$
-Where:$f$ is the vortex shedding frequency, $D$ is the cylinder diameter, and $U$ is the freestream velocity.
+The flow regime is defined by the Reynolds Number ($Re$): $$Re = \frac{U D}{\nu}$$
+The periodic nature of the vortex shedding is characterized by the Strouhal Number ($St$): $$St = \frac{f D}{U}$$
+Where: $f$ is the vortex shedding frequency, $D$ is the cylinder diameter, and $U$ is the freestream velocity.
 
 
 ## Numerical Validation
