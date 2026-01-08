@@ -1,0 +1,16 @@
+#!/bin/sh
+cd "${0%/*}" || exit                                # run from this directory
+. ${WM_PROJECT_DIR:?}/bin/tools/CleanFunctions      # Tutorial run functions
+#------------------------------------------------------------------------------
+
+cleanCase0
+
+rm -rf processor*
+
+rm -rf postProcessing
+
+rm -f log.*
+
+rm -f *.png
+
+#------------------------------------------------------------------------------
