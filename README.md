@@ -2,7 +2,7 @@
 This project involves a computational fluid dynamics (CFD) validation study of unsteady laminar flow over a circular cylinder. It illustrates the progression from initial instability to a stable, periodic vortex shedding pattern (Von Kármán vortex street) at Re = 100. 
 
 <div align="center">
-  <video src="https://github.com/user-attachments/assets/cd45ee14-33c2-4baf-ad76-4caacf109f23" width="80%"> </video>
+  <video src="https://github.com/user-attachments/assets/cd45ee14-33c2-4baf-ad76-4caacf109f23" width="50%"> </video>
 </div>
 
 ## Technology used
