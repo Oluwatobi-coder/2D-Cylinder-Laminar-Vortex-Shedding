@@ -106,10 +106,10 @@ cd 2D-Cylinder-Laminar-Vortex-Shedding
 ```bash
 bash ./Allrun # or ./Allrun
 ```
-## 3. download required libraries for (post-processing script)
-```bash
-pip install -r requirements.txt
-```
+
+## 3. Visualize the results
+Open the `para.foam` file to visualize the results. If you have ParaView installed, you should be able to open the file with no issues.
+
 
 ## 4. Run post-processing script
 ```bash
