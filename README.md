@@ -4,9 +4,7 @@ This project involves a computational fluid dynamics (CFD) validation study of u
 ## Project Overview
 This study serves as a foundational validation for the physics of vortex shedding, which is essential for managing thermal loads in power systems and capturing energy from fluid-structure interactions.
 
-<div align="center">
-  <img src="./simulation_video/vortex_shedding_simulation.gif" width="50%" />
-</div>
+![vortex_shedding_simulation](https://github.com/user-attachments/assets/ca158e9a-bd21-41fb-b871-d09eb20b766f)
 
 ## Technology used
 
