@@ -1,8 +1,11 @@
 # 2D-Cylinder-Laminar-Vortex-Shedding
 This project involves a computational fluid dynamics (CFD) validation study of unsteady laminar flow over a circular cylinder. It illustrates the progression from initial instability to a stable, periodic vortex shedding pattern (Von Kármán vortex street) at Re = 100. 
 
+## Project Overview
+This study serves as a foundational validation for the physics of vortex shedding, which is essential for managing thermal loads in power systems and capturing energy from fluid-structure interactions.
+
 <div align="center">
-  <video src="https://github.com/user-attachments/assets/cd45ee14-33c2-4baf-ad76-4caacf109f23" width="50%"> </video> 
+  <img src="./simulation_video/vortex_shedding_simulation.gif" width="50%" />
 </div>
 
 ## Technology used
@@ -29,8 +32,8 @@ This project involves a computational fluid dynamics (CFD) validation study of u
 `snappyHexMesh` was used to refine the grid around the cylinder surface and within the expected path of the Von Kármán vortex street.
 
 <p align="center">
-  <img src="cylinder_mesh_view02.png" width="45%" />
-  <img src="cylinder_mesh_view01.png" width="45%" />
+  <img src="./mesh/cylinder_mesh_view02.png" width="45%" />
+  <img src="./mesh/cylinder_mesh_view01.png" width="45%" />
 </p>
 
 
@@ -44,6 +47,8 @@ Where: $\mathbf{u}$ = velocity vector field, $p$ is the static pressure, $\rho$ 
 The flow regime is defined by the Reynolds Number ($Re$): $$Re = \frac{U D}{\nu}$$
 The periodic nature of the vortex shedding is characterized by the Strouhal Number ($St$): $$St = \frac{f D}{U}$$
 Where: $f$ is the vortex shedding frequency, $D$ is the cylinder diameter, and $U$ is the freestream velocity.
+
+Note: $f$ is a critical factor in the design of bladeless wind/hydro harvesters that utilize flow-induced vibrations for energy generation.
 
 
 ## Numerical Validation
@@ -63,6 +68,19 @@ The simulation was validated by comparing the calculated Strouhal Number ($St$) 
 ├── 0.orig/               # initial Conditions (U, p)
 ├── constant/             
 │   ├── transportProperties
+├── mesh/             
+│   ├── cylinder_mesh_view01.png
+│   ├── cylinder_mesh_view02.png
+├── post_processing/             
+│   ├── vortex_shedding_postprocessing.py
+├── results/             
+│   ├── lift_coefficient_peaks_re100.png
+│   ├── validation_plot.png
+│   ├── vortex_all_timesteps.png
+│   ├── vortex_fully_developed.png
+├── simulation_video/             
+│   ├── vortex_shedding_simulation.gif
+│   ├── vortex_shedding_simulation.mp4
 ├── system/                   
 │   ├── blockMeshDict
 │   ├── controlDict
@@ -75,18 +93,8 @@ The simulation was validated by comparing the calculated Strouhal Number ($St$) 
 ├── .gitignore
 ├── Allclean
 ├── Allrun            
-├── cylinder_mesh_view01.png 
-├── cylinder_mesh_view02.png
-├── LICENSE
-├── lift_coefficient_peaks_re100.png
-├── para.foam
 ├── README.md
-├── requirements.txt 
-├── validation_plot.png 
-├── vortex_all_timesteps.png
-├── vortex_fully_developed.png
-├── vortex_shedding_postprocessing.py
-└── vortex_shedding_simulation.mp4  
+└── requirements.txt 
 ```
 
 ##  How to Run
@@ -94,44 +102,84 @@ The simulation was validated by comparing the calculated Strouhal Number ($St$) 
 **Prerequisites**
 * OpenFOAM v2312 (or compatible)
 * ParaView
-* Python 3.x
+* Python 3.8+
 
-### 1. Clone the repository
+## How to Run
+
+### 1. Environment & Path Setup
+
+Clone this repository into your native Linux/WSL home directory.
+
+
 ```bash
+# navigate to Linux home and clone the repo
+cd ~
 git clone https://github.com/Oluwatobi-coder/2D-Cylinder-Laminar-Vortex-Shedding.git
 cd 2D-Cylinder-Laminar-Vortex-Shedding
+
 ```
 
-### 2. Run the simulation
+### 2. Configuring Parallel Processing
+
+The simulation is pre-configured to run on **2 processors**. To adjust this for your specific hardware:
+
+1. Open `system/decomposeParDict` in a text editor.
+2. Update `numberOfSubdomains` to your desired core count.
+3. If using `simple` coefficients, ensure the `n` values (e.g., `n (2 1 1)`) multiply to match your `numberOfSubdomains`.
+
+### 3. Execution Workflow
+
+You can run the entire sequence (Meshing, Decomposition, Solving, and Reconstruction) using the automated script:
+
 ```bash
-bash ./Allrun # or ./Allrun
+chmod +x Allrun
+./Allrun
+
 ```
 
-## 3. Visualize the results
-Open the `para.foam` file to visualize the results. If you have ParaView installed, you should be able to open the file with no issues.
+Note: During the automated run, solver outputs are redirected to `log.icoFoam`. To monitor residuals in real-time, run `tail -f log.icoFoam` in a separate terminal.
 
+**Manual Execution (Step-by-Step):**
+If you prefer to run the steps manually for verification:
 
-## 4. Run post-processing script
 ```bash
-python vortex_shedding_postprocessing.py
+cp -r 0.orig 0                     # Initialize field files
+blockMesh                          # Generate background mesh
+snappyHexMesh -overwrite           # Refine mesh around the cylinder
+decomposePar                       # Partition the domain for parallel run
+mpirun -np 2 icoFoam -parallel     # Run solver (update '2' to your core count)
+reconstructPar                     # Re-assemble data for visualization
+
 ```
 
-**Note:** to make the solver run much faster, confirm the number of cores on your computer and update the `numberOfSubdomains` in the `decomposeParDict` file under `system` directory.
+### 4. Post-Processing & Visualization
+
+1. **Visualization:** Open the case in ParaView by creating a dummy file:
+```bash
+touch para.foam && paraview para.foam
+
+```
+
+2. **Statistical Analysis:** Extract the Strouhal Number and Lift/Drag Coefficients using the Python script located in the `post_processing` folder:
+```bash
+python post_processing/vortex_shedding_postprocessing.py
+
+```
 
 ## Results
 
 * **Initial and fully developed flow regime:**
 The vortex shedding showed an initial instability until $t=30$ s, at which point the flow began to exhibit periodicity.
 <p align="center">
-  <img src="vortex_all_timesteps.png" width="45%" />
-  <img src="vortex_fully_developed.png" width="45%" />
+  <img src="./results/vortex_all_timesteps.png" width="45%" />
+  <img src="./results/vortex_fully_developed.png" width="45%" />
 </p>
 
 * **Lift coefficient peaks and Validation plot:**
 The peaks increased progressively from $t = 30$ s before reaching a steady state around $t = 70$ s, which maintained until the end of the simulation. The results show strong agreement with the Roshko (1954) correlation, yielding a relative error of only 1.89%.
 <p align="center">
-  <img src="lift_coefficient_peaks_re100.png" width="45%" />
-  <img src="validation_plot.png" width="45%" />
+  <img src="./results/lift_coefficient_peaks_re100.png" width="45%" />
+  <img src="./results/validation_plot.png" width="45%" />
 </p>
 
 
