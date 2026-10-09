@@ -2,7 +2,7 @@
 This project involves a computational fluid dynamics (CFD) validation study of unsteady laminar flow over a circular cylinder. It illustrates the progression from initial instability to a stable, periodic vortex shedding pattern (Von Kármán vortex street) at Re = 100. 
 
 ## Project Overview
-This study serves as a foundational validation for the physics of vortex shedding, which is essential for managing thermal loads in power systems and capturing energy from fluid-structure interactions.
+This study provides a foundational validation for the physics of vortex shedding, a critical phenomenon for analyzing fluid-structure interactions and managing thermal loads across diverse engineering applications.
 
 ![vortex_shedding_simulation](https://github.com/user-attachments/assets/ca158e9a-bd21-41fb-b871-d09eb20b766f)
 
